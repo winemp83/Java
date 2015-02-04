@@ -21,6 +21,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.sql.Time;
 
 /**
  *
@@ -29,6 +30,7 @@ import java.io.PrintWriter;
 class Sender extends Thread {
 
     private PrintWriter mOut;
+    private ClientInfo cl = new ClientInfo();
 
     public Sender(PrintWriter aOut) {
         mOut = aOut;
@@ -44,8 +46,19 @@ class Sender extends Thread {
             BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
             while (!isInterrupted()) {
                 String message = in.readLine();
-                mOut.println(message);
-                mOut.flush();
+                if (message.equals("/quit")) {
+                    mOut.println("quit");
+                    mOut.flush();
+                    break;
+                }else if(message.startsWith("name:")){
+                    cl.name = message.substring(5);
+                    mOut.println(message);
+                    mOut.flush();
+                }else {
+                    cl.last_msg =  System.currentTimeMillis();
+                    mOut.println(cl.name+":"+cl.last_msg+"::"+message);
+                    mOut.flush();
+                }
             }
         } catch (IOException ioe) {
             // Communication is broken

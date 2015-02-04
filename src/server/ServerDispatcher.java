@@ -60,7 +60,17 @@ class ServerDispatcher extends Thread
         this.socket = aClientInfo.mSocket;
         String senderIP = socket.getInetAddress().getHostAddress();
         String senderPort = "" + socket.getPort();
-        aMessage = senderIP + ":" + senderPort + " : " + aMessage;
+        if(aClientInfo.name == null && !aMessage.startsWith("name:")){
+            aMessage = "Bitte gib deinen Namen in Format name:$name";
+        }else if(aMessage.startsWith("name:") && aClientInfo.name == null){
+            aClientInfo.name = aMessage.substring(5);
+        }else if(aMessage.equalsIgnoreCase("quit")){
+            aMessage ="quit";
+        }else{
+            aMessage = aMessage;
+        }
+            
+        
         mMessageQueue.add(aMessage);
         notify();
     }

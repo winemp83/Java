@@ -15,19 +15,13 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package server;
-
-import java.net.Socket;
+package client;
 
 /**
  *
  * @author Sascha
  */
- 
-public class ClientInfo
-{
-    public Socket mSocket = null;
-    public ClientListener mClientListener = null;
-    public ClientSender mClientSender = null;
-    public String name = null;
+public class ClientInfo {
+    public String name= null;
+    public long last_msg = 0;
 }
