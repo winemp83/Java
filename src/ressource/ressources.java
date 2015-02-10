@@ -15,13 +15,17 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package client;
+package ressource;
 
 /**
  *
  * @author Sascha
  */
-public class ClientInfo {
-    public String name= null;
-    public long last_msg = 0;
+public interface ressources {
+
+    public String getCurrent(String what);
+    public void add (String what, double value);
+    public void rem (String what, double value);
+    public void set (String what, String value);
+
 }

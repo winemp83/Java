@@ -1,5 +1,4 @@
 
-import server.EchoServer;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,6 +12,6 @@ import server.EchoServer;
  */
 public class MyApp {
     public static void main(String[] args){
-        EchoServer srv = new EchoServer(2002);
+        
     }
 }
